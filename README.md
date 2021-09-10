@@ -3,6 +3,8 @@
 Descrição das pastas:
 
 - src: código-fonte do projeto
+- docs
+	- videos: demonstrações do funcionamento do sistema
 
 ## Para construir e executar o projeto (Ubuntu / Terminal):
 
@@ -56,6 +58,7 @@ Para desativar o ambiente virtual execute o comando
 deactivate
 ```
 
+Também é possível assistir o video de demonstração de build e execução do projeto neste [link](https://drive.google.com/file/d/1VMa17glNh3cYGC2I8TwApVkku2hw8TU-/view?usp=sharing).
 
 ## Para construir e executar o projeto (Windows / prompt de comandos):
 
