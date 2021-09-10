@@ -118,3 +118,12 @@ python app.py
 ```
 
 Abrir o navegador e acessar a URL informada no prompt de comando.
+
+
+## Links dos demais repositórios que compõe esse projeto
+
+Operações: 
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Calculos.git
+
+Logs: 
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Logs.git
