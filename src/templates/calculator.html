@@ -1,48 +1,149 @@
 {% extends 'base.html' %}
 
+<header>
+  {% block header %}
+  <script src='static/jquery.min.js'></script>
+  
+  {% endblock %}
+</header>
+
 <body>
   {% block content %}
   <main class="container">
     <div id="calculator">
       <div id="result">
         <div id="history">
-          <p id="history-value"></p>
-        </div>
+          <p id="history-value" name="str_input"></p>
+        
+      </div>
         <div id="output">
           <p id="output-value"></p>
         </div>
       </div>
 
       <div id="keyboard">
-        <button class="number" id="7">7</button>
-        <button class="number" id="8">8</button>
-        <button class="number" id="9">9</button>
-        <button class="operator" id="/">&#247</button>
-        <button class="operator" id="backspace">CE</button>
+        <button class="number" id="7" value="7" onclick="insert(value)">7</button>
+        <button class="number" id="8" value="8" onclick="insert(value)">8</button>
+        <button class="number" id="9" value="9" onclick="insert(value)">9</button>
+        <button class="operator" id="/" onclick="insert('/')">&#247</button>
+        <button class="operator" id="backspace" onclick="clean()">CE</button>
+ 
+        <button class="number" id="4" onclick="insert('4')">4</button>
+        <button class="number" id="5" onclick="insert('5')">5</button>
+        <button class="number" id="6" onclick="insert('6')">6</button>
+        <button class="operator" id="*"onclick ="insert('*')">&times;</button>
+        <button class="operator" id="(" onclick ="insert('(')">(</button>
 
-        <button class="number" id="4">4</button>
-        <button class="number" id="5">5</button>
-        <button class="number" id="6">6</button>
-        <button class="operator" id="*">&times;</button>
-        <button class="operator" id="(">(</button>
-
-        <button class="number" id="1">1</button>
-        <button class="number" id="2">2</button>
-        <button class="number" id="3">3</button>
-        <button class="operator" id="-">-</button>
-        <button class="operator" id=")">)</button>
+        <button class="number" id="1" onclick="insert('1')">1</button>
+        <button class="number" id="2" onclick="insert('2')">2</button>
+        <button class="number" id="3" onclick="insert('3')">3</button>
+        <button class="operator" id="-" onclick ="insert('-')">-</button>
+        <button class="operator" id=")" onclick = "insert(')')">)</button>
         
-        <button class="number" id="0">0</button>
+        <button class="number" id="0" onclick="insert('0')">0</button>
         <button class="operator" id=",">,</button>
-        <button class="operator" id="=">=</button>
-        <button class="operator" id="+">+</button>
-        <button class="operator" id="sqrt">x^(1/n)</button>
+        <button type='submit' class="operator" id="igual">=</button>
+        <button class="operator" id="+" onclick ='insert("+")'>+</button>
+        <button type= "submit" class="operator" id="sqrt" >x^(1/n)</button>
       </div>
     </div>
-  </main>
 
-  {% endblock %}
+  </main> 
+  
+  <div id="modal-raiz" class="modal-container">
+    <div class="modal">
+      <button class="fechar">x</button>
+      <h3 class="tittle-raiz">Vamos calcular a raiz enésima</h3>
+      <form>
+        <input type="text" class="indice" placeholder="Insira o indice"id='indice'>
+        <input type="text" class="radicando" placeholder="Insira o radicando" id='radicando'>
+        <input type="button" class="resultado" value="Resolver" id="resolve">
+      </form>
+      <img id="img_raiz" src="../static/img/raiz.png"> 
 
+    </div>
+  </div>
+  <script>
+
+    function insert(num){            
+            var numero = document.getElementById('history-value').innerHTML;
+            document.getElementById('history-value').innerHTML = numero + num;      
+          }
+
+    function clean(){
+      document.getElementById('history-value').innerHTML="";
+    }
+
+    function iniciaModal(modalID){
+      const modal = document.getElementById(modalID);
+      if(modal){
+        modal.classList.add('mostrar');
+        modal.addEventListener('click', (e) =>{
+          if(e.target.id == modalID || e.target.className== 'fechar'){
+            modal.classList.remove('mostrar')
+          }
+        })
+
+      }
+      
+    }
+
+    const bt_raiz = document.getElementById('sqrt');
+    bt_raiz.addEventListener('click',function(){
+      iniciaModal('modal-raiz');
+    })
+
+      
+         $(document).ready(function(){
+            result = document.getElementById('igual');
+            dados = document.getElementById('history-value');
+            op_raiz = document.getElementById('resolve');
+            indice_raiz = document.querySelector('.indice')
+            radicando_raiz = document.querySelector('.radicando')
+            
+            
+
+                      
+            result.onclick = function(){
+              data = document.getElementById('history-value').innerText;
+              
+              $.ajax({
+                url: 'http://127.0.0.1:5002/api_gateway/calculate?str_input='+data,
+                dataType: 'json',
+                crossOrigin: true,
+                success: function(resposta){
+                  console.log(resposta);
+                  document.getElementById('history-value').innerHTML=resposta.resultado               
+              }              
+            });   
+            
+            op_raiz.onclick = function(){
+              indice = indice_raiz.value;
+              radicando= radicando_raiz.value; 
+              data= [indice,radicando];
+
+              console.log(indice)
+              
+              
+              $.ajax({
+                url:'http://127.0.0.1:5002/api_gateway/cal_raiz?str_input='+data,
+                dataType:'json',
+                crossOrigin:true,
+                sucess: function(resposta){
+                  console.log(resposta);
+                  document.getElementById('history-value').innerHTML=resposta.resultado  
+                }
+              })
+            }
+                 
+         }})
+
+         
+
+
+        
+                </script> 
+  {% endblock %}  
 </body>
-
 </html>
+    
