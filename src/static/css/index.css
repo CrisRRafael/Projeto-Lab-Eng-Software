@@ -319,6 +319,18 @@ footer {
     cursor: pointer;
     box-shadow: 0 4px 4px 0 rgba(0,0,0,.3);
   }
+
+  #resolve_raiz{
+    cursor: pointer;
+    width:6rem ;
+    height:2rem ; 
+    background: #4C6E44;
+    color: white;
+    font-size: 1rem;
+  }
+#indice{
+  font-size: 1rem;
+}
   
   
   footer {

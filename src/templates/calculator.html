@@ -43,7 +43,7 @@
         <button class="number" id="0" onclick="insert('0')">0</button>
         <button class="operator" id=",">,</button>
         <button type='submit' class="operator" id="igual">=</button>
-        <button class="operator" id="+" onclick ='insert("+")'>+</button>
+        <button class="operator" id="+" onclick ="insert('+')">+</button>
         <button type= "submit" class="operator" id="sqrt" >x^(1/n)</button>
       </div>
     </div>
@@ -57,8 +57,9 @@
       <form>
         <input type="text" class="indice" placeholder="Insira o indice"id='indice'>
         <input type="text" class="radicando" placeholder="Insira o radicando" id='radicando'>
-        <input type="button" class="resultado" value="Resolver" id="resolve">
+        <input type="button" value="Resolver" id="resolve_raiz" onclick="raiz()">
       </form>
+      <p id="raiz-value" name="str_input"></p>
       <img id="img_raiz" src="../static/img/raiz.png"> 
 
     </div>
@@ -74,38 +75,76 @@
       document.getElementById('history-value').innerHTML="";
     }
 
+    function show(){
+      modal.style.display = "flex"
+    }
+
     function iniciaModal(modalID){
       const modal = document.getElementById(modalID);
       if(modal){
         modal.classList.add('mostrar');
         modal.addEventListener('click', (e) =>{
-          if(e.target.id == modalID || e.target.className== 'fechar'){
+          if(e.target.className== 'fechar'){
             modal.classList.remove('mostrar')
           }
         })
-
-      }
-      
+      }      
     }
+   
+
+   
+
+       
+    var r_raiz = document.getElementById('resolve_raiz');
+    var modal = document.getElementById('modal-raiz');
+
+    function raiz(){
+
+      var r_raiz = document.getElementById('resolve_raiz');
+      var modal = document.getElementById('modal-raiz');
+
+
+              indice_raiz = document.getElementById('indice')
+              indicer = indice_raiz.value
+             
+              radicando_raiz = document.getElementById('radicando')
+              radicandor=radicando_raiz.value
+               
+              data= indicer +","+radicandor
+
+              $.ajax({
+                url: 'http://127.0.0.1:5002/api_gateway/calc_raiz?str_input='+data,
+                dataType:'json',
+                crossOrigin:true,
+                        
+                complete: function(resposta){ 
+                  console.log(resposta.responseJSON.resultado);
+                  abc= resposta.responseJSON.resultado
+                  document.getElementById('history-value').innerHTML=abc.toFixed(2)              
+                }
+              })
+
+             }
+             
+
+ 
+
+                 
 
     const bt_raiz = document.getElementById('sqrt');
     bt_raiz.addEventListener('click',function(){
       iniciaModal('modal-raiz');
     })
-
       
          $(document).ready(function(){
             result = document.getElementById('igual');
             dados = document.getElementById('history-value');
-            op_raiz = document.getElementById('resolve');
-            indice_raiz = document.querySelector('.indice')
-            radicando_raiz = document.querySelector('.radicando')
-            
-            
+            res_raiz = document.getElementById('resolve_raiz')                    
 
                       
             result.onclick = function(){
               data = document.getElementById('history-value').innerText;
+              console.log(data)
               
               $.ajax({
                 url: 'http://127.0.0.1:5002/api_gateway/calculate?str_input='+data,
@@ -115,27 +154,43 @@
                   console.log(resposta);
                   document.getElementById('history-value').innerHTML=resposta.resultado               
               }              
-            });   
-            
-            op_raiz.onclick = function(){
-              indice = indice_raiz.value;
-              radicando= radicando_raiz.value; 
-              data= [indice,radicando];
+            });
 
-              console.log(indice)
-              
+
+          /*  res_raiz.onclick = function(){
+              indice_raiz = document.getElementById('indice')
+              indicer = indice_raiz.value
+             
+              radicando_raiz = document.getElementById('radicando')
+              radicandor=radicando_raiz.value
+               
+              data= indicer +","+radicandor
               
               $.ajax({
-                url:'http://127.0.0.1:5002/api_gateway/cal_raiz?str_input='+data,
-                dataType:'json',
-                crossOrigin:true,
-                sucess: function(resposta){
+                url: 'http://127.0.0.1:5002/api_gateway/calc_raiz?str_input='+data,
+                dataType: 'json',
+                crossOrigin: true,
+                success: function(resposta){
                   console.log(resposta);
-                  document.getElementById('history-value').innerHTML=resposta.resultado  
-                }
-              })
-            }
-                 
+                  document.getElementById('history-value').innerHTML=resposta.resultado               
+              }              
+            });
+          }*/
+
+
+
+
+
+
+
+
+                
+            
+                
+                
+            
+            
+            
          }})
 
          
