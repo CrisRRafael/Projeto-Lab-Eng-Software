@@ -133,3 +133,8 @@ https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Api_gateway.git
 
 Calculo de Raiz Enésima:
 https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Calculo-Especial.git
+
+## Link do Vídeo do Projeto.
+
+Devido ao tamanho do vídeo exceder o tamanho permitido pelo github segue o link abaixo
+https://drive.google.com/file/d/13B5kom2ZiB-SU6OXCpNMhXrJpZ0Y8jCE/view?usp=sharing
