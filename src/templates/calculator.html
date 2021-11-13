@@ -67,9 +67,9 @@
   <script>
 
     function insert(num){            
-            var numero = document.getElementById('history-value').innerHTML;
-            document.getElementById('history-value').innerHTML = numero + num;      
-          }
+      var numero = document.getElementById('history-value').innerHTML;
+      document.getElementById('history-value').innerHTML = numero + num;      
+    }
 
     function clean(){
       document.getElementById('history-value').innerHTML="";
@@ -89,9 +89,8 @@
           }
         })
       }      
-    }  
-
-       
+    }
+          
     var r_raiz = document.getElementById('resolve_raiz');
     var modal = document.getElementById('modal-raiz');
 
@@ -99,105 +98,81 @@
       var r_raiz = document.getElementById('resolve_raiz');
       var modal = document.getElementById('modal-raiz');
 
-              indice_raiz = document.getElementById('indice')
-              indicer = indice_raiz.value
-             
-              radicando_raiz = document.getElementById('radicando')
-              radicandor=radicando_raiz.value
-               
-              data= indicer +","+radicandor
-              document.getElementById('indice').value=""
-              document.getElementById('radicando').value=""
-              modal.classList.remove('mostrar')
-              
 
+      indice_raiz = document.getElementById('indice')
+      indicer = indice_raiz.value
+      
+      radicando_raiz = document.getElementById('radicando')
+      radicandor=radicando_raiz.value
+        
+      data= indicer +","+radicandor
+      document.getElementById('indice').value=""
+      document.getElementById('radicando').value=""
+      modal.classList.remove('mostrar')
+   
 
-              $.ajax({
-                url: 'http://127.0.0.1:5002/api_gateway/calc_raiz?str_input='+data,
-                dataType:'json',
-                crossOrigin:true,
+      $.ajax({
+        url: 'http://127.0.0.1:5002/api_gateway/calc_raiz?str_input='+data,
+        dataType:'json',
+        crossOrigin:true,
                 
-                complete: function(resposta){ 
-                  console.log(resposta.responseJSON.resultado);
-                  abc= resposta.responseJSON.resultado
-                  document.getElementById('history-value').innerHTML=abc.toFixed(2)              
-                }
-              })
+        complete: function(resposta){ 
+          result_raiz= resposta.responseJSON.resultado
+          document.getElementById('history-value').innerHTML=result_raiz.toFixed(2)              
+        }
 
-             }
-             
-
- 
-
-                 
-
+      });
+    }
+      
     const bt_raiz = document.getElementById('sqrt');
+    
     bt_raiz.addEventListener('click',function(){
       iniciaModal('modal-raiz');
-    })
+    });
+
+    function createLog(body){
+      console.log('body=', body);
+      let url = 'http://127.0.0.1:5002/api_gateway/create-log';
+      let request = new XMLHttpRequest();
+      request.open('POST', url, true);
+      request.setRequestHeader('Content-type', 'application/json');
+      request.send(JSON.stringify(body));
+
+      request.onload = function() {
+        console.log(this.responseText);
+      }
+
+      return request.responseText;
+    }
       
-         $(document).ready(function(){
-            result = document.getElementById('igual');
-            dados = document.getElementById('history-value');
-            res_raiz = document.getElementById('resolve_raiz')                    
+    $(document).ready(function(){
+      result = document.getElementById('igual');
+      dados = document.getElementById('history-value');
+      res_raiz = document.getElementById('resolve_raiz'); 
 
-                      
-            result.onclick = function(){
-              data = document.getElementById('history-value').innerText;
-              console.log(data)
-              
-              $.ajax({
-                url: 'http://127.0.0.1:5002/api_gateway/calculate?str_input='+data,
-                dataType: 'json',
-                crossOrigin: true,
-                success: function(resposta){
-                  console.log(resposta);
-                  document.getElementById('history-value').innerHTML=resposta.resultado               
-              }              
-            });
+      result.onclick = function(){
+        data = document.getElementById('history-value').innerText;
 
+        body = {
+          'operation': data,
+          'argument': data,
+          'type_operation': 'Elementar',
+          'date': '13/11/2021',
+        }
 
-          /*  res_raiz.onclick = function(){
-              indice_raiz = document.getElementById('indice')
-              indicer = indice_raiz.value
+        $.ajax({
+          url: 'http://127.0.0.1:5002/api_gateway/calculate?str_input='+data,
+          dataType: 'json',
+          crossOrigin: true,
+          success: function(resposta){
+            document.getElementById('history-value').innerHTML=resposta.resultado               
+          }  
+        }); 
              
-              radicando_raiz = document.getElementById('radicando')
-              radicandor=radicando_raiz.value
-               
-              data= indicer +","+radicandor
-              
-              $.ajax({
-                url: 'http://127.0.0.1:5002/api_gateway/calc_raiz?str_input='+data,
-                dataType: 'json',
-                crossOrigin: true,
-                success: function(resposta){
-                  console.log(resposta);
-                  document.getElementById('history-value').innerHTML=resposta.resultado               
-              }              
-            });
-          }*/
-
-
-
-
-
-
-
-
-                
-            
-                
-                
-            
-            
-            
-         }})
-
-         
-
-
-        
-                </script> 
+        createLog(body);
+      }
+    });
+    </script> 
   {% endblock %}  
 </body>
 </html>
