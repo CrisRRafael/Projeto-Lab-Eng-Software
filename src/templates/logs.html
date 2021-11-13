@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 <body>
-
   {% block content %}
   <main class="container">
     <table id="data-table">
+      
       <thead>
         <tr>
           <th>Operação</th>
@@ -15,29 +15,60 @@
       </thead>
 
       <tbody>
+        {% for log in logs %}
         <tr>
-          <td class="description">20 / (2 + 3)</td>
-          <td class="description">-</td>
-          <td class="description">Elementar</td>
-          <td class="date">23/09/2021</td>
+          <td class="description">{{log.operation}}</td>
+          <td class="description">{{log.argument}}</td>
+          <td class="description">{{log.type_operation}}</td>
+          <td class="date">{{log.date}}</td>
         </tr>
-
-        <tr>
-          <td class="description">20 / (2 + 3)</td>
-          <td class="description">-</td>
-          <td class="description">Elementar</td>
-          <td class="date">23/09/2021</td>
-        </tr>
-
-        <tr>
-          <td class="description">20 / (2 + 3)</td>
-          <td class="description">-</td>
-          <td class="description">Elementar</td>
-          <td class="date">23/09/2021</td>
-        </tr>
+        {% endfor %}
       </tbody>
+      
     </table>
   </main>
+  <script>
+    function listLogs(url) {
+      let request = new XMLHttpRequest()
+      request.open('GET', url, false)
+      request.send()
+      return request.responseText
+    }
+
+    function createLine(log) {
+      console.log(log);
+      line = document.createElement('tr');
+      tdOperation = document.createElement('td');
+      tdArgument = document.createElement('td');
+      tdTypeOperation = document.createElement('td');
+      tdDate = document.createElement('td');
+
+      tdOperation.innerHTML = log.operation;
+      tdArgument.innerHTML = log.argument;
+      tdTypeOperation.innerHTML = log.type_operation;
+      tdDate.innerHTML = log.date;
+
+      line.appendChild(tdOperation);
+      line.appendChild(tdArgument);
+      line.appendChild(tdTypeOperation);
+      line.appendChild(tdDate);
+
+      return line;
+    }
+
+    function main() {
+      let data = listLogs('http://127.0.0.1:5002/api_gateway/logs');
+      let logs = JSON.parse(data);
+      let table = document.getElementById('data-table');
+
+      logs.forEach(element => {
+        let line = createLine(element);
+        data-table.appendChild(line);
+      })
+    }
+
+    main()
+  </script>
   {% endblock %}
 </body>
 
