@@ -89,20 +89,15 @@
           }
         })
       }      
-    }
-   
-
-   
+    }  
 
        
     var r_raiz = document.getElementById('resolve_raiz');
     var modal = document.getElementById('modal-raiz');
 
     function raiz(){
-
       var r_raiz = document.getElementById('resolve_raiz');
       var modal = document.getElementById('modal-raiz');
-
 
               indice_raiz = document.getElementById('indice')
               indicer = indice_raiz.value
@@ -111,12 +106,17 @@
               radicandor=radicando_raiz.value
                
               data= indicer +","+radicandor
+              document.getElementById('indice').value=""
+              document.getElementById('radicando').value=""
+              modal.classList.remove('mostrar')
+              
+
 
               $.ajax({
                 url: 'http://127.0.0.1:5002/api_gateway/calc_raiz?str_input='+data,
                 dataType:'json',
                 crossOrigin:true,
-                        
+                
                 complete: function(resposta){ 
                   console.log(resposta.responseJSON.resultado);
                   abc= resposta.responseJSON.resultado
