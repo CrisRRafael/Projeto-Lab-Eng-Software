@@ -129,7 +129,7 @@ Logs:
 https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Logs.git
 
 Gateway:
-https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Api_gateway.git
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Api-gateway.git
 
 Calculo de Raiz Enésima:
 https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Calculo-Especial.git
