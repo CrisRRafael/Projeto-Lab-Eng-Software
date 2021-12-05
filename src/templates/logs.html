@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
+<header>
+  {% block header %}
+  <script src='static/jquery.min.js'></script>
+  
+  {% endblock %}
+</header>
+
 <body>
+ 
   {% block content %}
   <main class="container">
     <table id="data-table">
@@ -61,13 +69,14 @@
       let logs = JSON.parse(data);
       let table = document.getElementById('data-table');
 
-      logs.forEach(element => {
+      logs.data.forEach(element => {
         let line = createLine(element);
         data-table.appendChild(line);
       })
     }
 
     main()
+
   </script>
   {% endblock %}
 </body>
