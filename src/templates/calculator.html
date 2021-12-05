@@ -123,6 +123,7 @@
         crossOrigin:true,
                 
         complete: function(resposta){ 
+
           abc= resposta.responseJSON.data.resultado
           document.getElementById('history-value').innerHTML=abc.toFixed(2)              
         }
@@ -137,7 +138,7 @@
         success: function(resposta){
           console.log(resposta)               
         }  
-      }); 
+      });
     }
       
     const bt_raiz = document.getElementById('sqrt');
@@ -145,6 +146,21 @@
     bt_raiz.addEventListener('click',function(){
       iniciaModal('modal-raiz');
     });
+
+    function createLog(body){
+      console.log('body=', body);
+      let url = 'http://127.0.0.1:5002/api_gateway/create-log';
+      let request = new XMLHttpRequest();
+      request.open('POST', url, true);
+      request.setRequestHeader('Content-type', 'application/json');
+      request.send(JSON.stringify(body));
+
+      request.onload = function() {
+        console.log(this.responseText);
+      }
+
+      return request.responseText;
+    }
       
     $(document).ready(function(){
       result = document.getElementById('igual');

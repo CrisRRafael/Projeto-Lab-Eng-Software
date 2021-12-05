@@ -127,3 +127,19 @@ https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Calculos.git
 
 Logs: 
 https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Logs.git
+
+Gateway:
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Api-gateway.git
+
+Calculo de Raiz Enésima:
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software-Calculo-Especial.git
+
+## Link do Vídeo do Projeto.
+
+Devido ao tamanho do vídeo exceder o tamanho permitido pelo github segue o link abaixo:
+
+https://drive.google.com/file/d/13B5kom2ZiB-SU6OXCpNMhXrJpZ0Y8jCE/view?usp=sharing
+
+Video demostrando o funcionamento do cálculo de raiz enésima
+
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Entrega_Parcial02_Raiz_en%C3%A9sima.mkv
