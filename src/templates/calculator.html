@@ -109,7 +109,13 @@
       document.getElementById('indice').value=""
       document.getElementById('radicando').value=""
       modal.classList.remove('mostrar')
-   
+
+      body = {
+        'operation': data,
+        'argument': data,
+        'type_operation': 'Transcedental',
+        'date': new Date(Date.now()),
+      }
 
       $.ajax({
         url: 'http://127.0.0.1:5002/api_gateway/calc_raiz?str_input='+data,
@@ -117,10 +123,21 @@
         crossOrigin:true,
                 
         complete: function(resposta){ 
-          result_raiz= resposta.responseJSON.resultado
-          document.getElementById('history-value').innerHTML=result_raiz.toFixed(2)              
-        }
 
+          abc= resposta.responseJSON.data.resultado
+          document.getElementById('history-value').innerHTML=abc.toFixed(2)              
+        }
+      });
+
+      $.ajax({
+        url: 'http://127.0.0.1:5002/api_gateway/create-log',
+        dataType: 'json',
+        crossOrigin: true,
+        type: 'POST',
+        data: body,
+        success: function(resposta){
+          console.log(resposta)               
+        }  
       });
     }
       
@@ -157,7 +174,7 @@
           'operation': data,
           'argument': data,
           'type_operation': 'Elementar',
-          'date': '13/11/2021',
+          'date': new Date(Date.now()),
         }
 
         $.ajax({
@@ -165,11 +182,20 @@
           dataType: 'json',
           crossOrigin: true,
           success: function(resposta){
-            document.getElementById('history-value').innerHTML=resposta.resultado               
+            document.getElementById('history-value').innerHTML=resposta.data.resultado               
+          }  
+        });
+        
+        $.ajax({
+          url: 'http://127.0.0.1:5002/api_gateway/create-log',
+          dataType: 'json',
+          crossOrigin: true,
+          type: 'POST',
+          data: body,
+          success: function(resposta){
+            console.log(resposta)               
           }  
         }); 
-             
-        createLog(body);
       }
     });
     </script> 

@@ -15,7 +15,9 @@
 </head>
 
 <body>
+  {% block body %}
   <header>
+    <script src='static/jquery.min.js'></script>
     <div class="menu">
       <div><a href="/">INÍCIO</a></div>
       <div><a href="logs">HISTÓRICO</a></div>
@@ -34,12 +36,12 @@
     {% block content %} {% endblock %}
   </div>
 
-
   <footer>
     <p>2021 - CALCULE JÁ</p>
     <p>Cristiane Rodrigues</p>
     <p>Raquel Ribeiro</p>
   </footer>
+  {% endblock %}
 </body>
 
 </html>
