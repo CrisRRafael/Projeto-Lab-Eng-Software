@@ -143,3 +143,12 @@ https://drive.google.com/file/d/13B5kom2ZiB-SU6OXCpNMhXrJpZ0Y8jCE/view?usp=shari
 Video demostrando o funcionamento do cálculo de raiz enésima
 
 https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Entrega_Parcial02_Raiz_en%C3%A9sima.mkv
+
+## Links dos vídeos referente a 3º Entrega
+(Os vídeos se encontram em Projeto-Lab-Eng-Software/docs/videos/)
+
+### Vídeo CI
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Apresenta%C3%A7%C3%A3o%20CI-%20Entrega%203.mp4
+
+### Vídeo demostrando o funcionamento da calculador
+https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Apresenta%C3%A7%C3%A3o_calculadora-%20Entrega%203.mp4
