@@ -148,7 +148,9 @@ https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/En
 (Os vídeos se encontram em Projeto-Lab-Eng-Software/docs/videos/)
 
 ### Vídeo CI
-https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Apresenta%C3%A7%C3%A3o%20CI-%20Entrega%203.mp4
+No github: https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Apresenta%C3%A7%C3%A3o%20CI-%20Entrega%203.mp4
+No drive: https://drive.google.com/file/d/1LGs94yBejh0xMgulic3CbE7HdFb47V62/view?usp=sharing
 
 ### Vídeo demostrando o funcionamento da calculador
-https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Apresenta%C3%A7%C3%A3o_calculadora-%20Entrega%203.mp4
+No github: https://github.com/CrisRRafael/Projeto-Lab-Eng-Software/blob/main/docs/videos/Apresenta%C3%A7%C3%A3o_calculadora-%20Entrega%203.mp4
+No drive: https://drive.google.com/file/d/1AwZ5rbPAbj9XkhuEGFaGH78Wdl1wCZLm/view?usp=sharing
